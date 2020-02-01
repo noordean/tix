@@ -20,6 +20,7 @@ gem 'webpacker', '~> 4.x'
 gem "react_on_rails", "~> 6"
 gem 'pg'
 gem 'dotenv-rails'
+gem 'google_sign_in'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
