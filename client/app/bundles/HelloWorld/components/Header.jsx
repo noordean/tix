@@ -2,7 +2,7 @@ import React from "react";
 
 export default class Header extends React.Component {
   render() {
-    const { openModal } = this.props;
+    const { openModal, current_user } = this.props;
     return (
       <div className="header">
         <nav className="navbar bg-light navbar-expand-sm">
@@ -42,7 +42,7 @@ export default class Header extends React.Component {
               className="navbar-text welcome-text"
               style={{ color: "black" }}
             >
-              Welcome Nurudeen
+              Welcome <i>{current_user.name}</i>
             </span>
             <ul className="navbar-nav">
               <li className="navbar-item">

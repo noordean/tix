@@ -6,6 +6,7 @@ export default class EventPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      events: [],
       isCreateModalVisible: false,
       name: "",
       description: "",
@@ -16,6 +17,10 @@ export default class EventPage extends React.Component {
       endDate: "",
       endTime: ""
     };
+  }
+
+  componentDidMount() {
+    this.fetchEvents();
   }
 
   openCreateModal = event => {
@@ -56,6 +61,20 @@ export default class EventPage extends React.Component {
     this.closeCreateModal();
   };
 
+  fetchEvents = async () => {
+    const response = await fetch("/events.json", {
+      credentials: "same-origin",
+      method: "GET",
+      headers: ReactOnRails.authenticityHeaders({
+        "Content-Type": "application/json"
+      })
+    });
+    const events = await response.json();
+    this.setState({
+      events
+    });
+  };
+
   eventCreateFormInputs = () => {
     const {
       name,
@@ -80,9 +99,10 @@ export default class EventPage extends React.Component {
   };
 
   render() {
+    const { current_user } = this.props;
     return (
       <div className="event-page">
-        <Header openModal={this.openCreateModal} />
+        <Header openModal={this.openCreateModal} current_user={current_user} />
         <CreateEventModal
           isVisible={this.state.isCreateModalVisible}
           closeModal={this.closeCreateModal}

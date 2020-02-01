@@ -2,6 +2,16 @@ class EventsController < ApplicationController
   before_action :redirect_unauthorized_user!
 
   def index
+    respond_to do |format|
+      format.html do
+        @current_user = current_user
+      end
+
+      format.json do
+        events = current_user.events
+        render json: events
+      end
+    end
   end
 
   def create
