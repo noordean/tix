@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'logins#new'
 
   get 'login/create', to: 'logins#create', as: :create_login
+  get 'logout', to: 'logins#destroy'
 
   resources :events
 end

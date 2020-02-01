@@ -46,7 +46,7 @@ export default class Header extends React.Component {
             </span>
             <ul className="navbar-nav">
               <li className="navbar-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/logout">
                   Log out
                 </a>
               </li>
