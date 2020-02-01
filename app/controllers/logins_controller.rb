@@ -5,7 +5,7 @@ class LoginsController < ApplicationController
   def create
     if user = authenticate_with_google
       # session[:user_id] = user.id
-      redirect_to login_url
+      redirect_to events_url
     else
       redirect_to login_url, alert: 'authentication_failed'
     end
