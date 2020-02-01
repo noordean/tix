@@ -1,12 +1,14 @@
 import React from "react";
 import CreateEventModal from "./CreateEventModal";
 import Header from "./Header";
+import EventsList from "./EventsList";
 
 export default class EventPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       events: [],
+      fetchingEvents: false,
       isCreateModalVisible: false,
       name: "",
       description: "",
@@ -62,6 +64,7 @@ export default class EventPage extends React.Component {
   };
 
   fetchEvents = async () => {
+    this.setState({ fetchingEvents: true });
     const response = await fetch("/events.json", {
       credentials: "same-origin",
       method: "GET",
@@ -71,7 +74,8 @@ export default class EventPage extends React.Component {
     });
     const events = await response.json();
     this.setState({
-      events
+      events,
+      fetchingEvents: false
     });
   };
 
@@ -109,6 +113,15 @@ export default class EventPage extends React.Component {
           onChangeCreateEventInputs={this.onChangeCreateEventInputs}
           onCreateEvent={this.onCreateEvent}
         />
+        <div className="container events-list-container">
+          {this.state.fetchingEvents ? (
+            <div className="loader"></div>
+          ) : this.state.events.length ? (
+            <EventsList events={this.state.events} />
+          ) : (
+            <h6 className="no-event-text">You have not created any event</h6>
+          )}
+        </div>
       </div>
     );
   }
