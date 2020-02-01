@@ -20,8 +20,8 @@ class EventsController < ApplicationController
     end_date = params.dig(:event, :end_date)
     end_time = params.dig(:event, :end_time)
     event = Event.new(event_params)
-    event.starts_at = DateTime.parse("#{start_date} #{start_time}")
-    event.ends_at = DateTime.parse("#{end_date} #{end_time}")
+    event.starts_at = Time.parse("#{start_date} #{start_time}")
+    event.ends_at = Time.parse("#{end_date} #{end_time}")
     event.user_id = current_user.id
 
     if event.save
