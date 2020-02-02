@@ -14,6 +14,7 @@ export default class EventPage extends React.Component {
       isCreateModalVisible: false,
       isEditModalVisible: false,
       name: "",
+      eventType: "",
       description: "",
       address: "",
       contactInfo: "",
@@ -50,7 +51,8 @@ export default class EventPage extends React.Component {
       address,
       contact_info,
       starts_at,
-      ends_at
+      ends_at,
+      event_type
     } = event;
     const dateFormat = "YYYY-MM-DD";
     const timeFormat = "HH:mm";
@@ -60,6 +62,7 @@ export default class EventPage extends React.Component {
       description,
       address,
       contactInfo: contact_info,
+      eventType: event_type,
       startDate: moment(starts_at).format(dateFormat),
       startTime: moment(starts_at).format(timeFormat),
       endDate: moment(ends_at).format(dateFormat),
@@ -200,7 +203,8 @@ export default class EventPage extends React.Component {
       startDate,
       startTime,
       endDate,
-      endTime
+      endTime,
+      eventType
     } = this.state;
     return {
       name,
@@ -210,7 +214,8 @@ export default class EventPage extends React.Component {
       start_date: startDate,
       start_time: startTime,
       end_date: endDate,
-      end_time: endTime
+      end_time: endTime,
+      event_type: eventType
     };
   };
 

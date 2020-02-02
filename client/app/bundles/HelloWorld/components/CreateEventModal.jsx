@@ -17,18 +17,36 @@ export default class CreateEventModal extends React.Component {
         </div>
         <div className="modal-body">
           <form onSubmit={event => onCreateEvent(event)}>
-            <div className="form-group">
-              <label htmlFor="name">
-                Name <span className="required-field">*</span>
-              </label>
-              <input
-                type="text"
-                className="form-control form-control-sm"
-                id="name"
-                name="name"
-                onChange={event => onChangeCreateEventInputs(event)}
-                required
-              />
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <label htmlFor="name">
+                  Name <span className="required-field">*</span>
+                </label>
+                <input
+                  type="text"
+                  className="form-control form-control-sm"
+                  id="name"
+                  name="name"
+                  onChange={event => onChangeCreateEventInputs(event)}
+                  required
+                />
+              </div>
+              <div className="form-group col-md-6">
+                <label htmlFor="eventType">
+                  Event <span className="required-field">*</span>
+                </label>
+                <select
+                  className="form-control form-control-sm"
+                  id="eventType"
+                  name="eventType"
+                  onChange={event => onChangeCreateEventInputs(event)}
+                  required
+                >
+                  <option value="">None</option>
+                  <option value="paid">Paid</option>
+                  <option value="free">Free</option>
+                </select>
+              </div>
             </div>
             <div className="form-group">
               <label htmlFor="description">Description</label>

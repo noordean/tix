@@ -11,6 +11,11 @@ class Event < ApplicationRecord
     in_active: 2
   }
 
+  enum event_type: {
+    paid: 1,
+    free: 2
+  }
+
   def starts_at_in_the_past
     errors.add(:starts_at, "must not be a date in the past") if starts_at.past?
   end

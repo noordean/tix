@@ -18,17 +18,36 @@ export default class EditEventModal extends React.Component {
         </div>
         <div className="modal-body">
           <form onSubmit={event => onUpdateEvent(event)}>
-            <div className="form-group">
-              <label htmlFor="name">
-                Name <span className="required-field">*</span>
-              </label>
-              <input
-                type="text"
-                className="form-control form-control-sm"
-                name="name"
-                value={stateValues.name}
-                onChange={event => onChangeCreateEventInputs(event)}
-              />
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <label htmlFor="name">
+                  Name <span className="required-field">*</span>
+                </label>
+                <input
+                  type="text"
+                  className="form-control form-control-sm"
+                  name="name"
+                  value={stateValues.name}
+                  onChange={event => onChangeCreateEventInputs(event)}
+                  required
+                />
+              </div>
+              <div className="form-group col-md-6">
+                <label htmlFor="eventType">
+                  Event <span className="required-field">*</span>
+                </label>
+                <select
+                  className="form-control form-control-sm"
+                  name="eventType"
+                  value={stateValues.eventType}
+                  onChange={event => onChangeCreateEventInputs(event)}
+                  required
+                >
+                  <option value="">None</option>
+                  <option value="paid">Paid</option>
+                  <option value="free">Free</option>
+                </select>
+              </div>
             </div>
             <div className="form-group">
               <label htmlFor="description">Description</label>
