@@ -79,6 +79,29 @@ export default class EventPage extends React.Component {
     });
   };
 
+  onDeleteEvent = eventId => {
+    if (confirm("Are you sure you want to delete this event?")) {
+      this.deleteEvent(eventId);
+    }
+  };
+
+  deleteEvent = async eventId => {
+    const response = await fetch(`/events/${eventId}`, {
+      credentials: "same-origin",
+      method: "DELETE",
+      headers: ReactOnRails.authenticityHeaders({
+        "Content-Type": "application/json"
+      })
+    });
+
+    if (!response.ok) {
+      toastr.error("An error occured. Please try again");
+      return;
+    }
+    this.fetchEvents();
+    toastr.success("Event successfully deleted");
+  };
+
   eventCreateFormInputs = () => {
     const {
       name,
@@ -117,9 +140,12 @@ export default class EventPage extends React.Component {
           {this.state.fetchingEvents ? (
             <div className="loader"></div>
           ) : this.state.events.length ? (
-            <EventsList events={this.state.events} />
+            <EventsList
+              events={this.state.events}
+              onDeleteEvent={this.onDeleteEvent}
+            />
           ) : (
-            <h6 className="no-event-text">You have not created any event</h6>
+            <h6 className="no-event-text">You currently have no event</h6>
           )}
         </div>
       </div>

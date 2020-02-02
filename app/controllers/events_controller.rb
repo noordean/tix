@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :redirect_unauthorized_user!
+  before_action :load_event, only: %i[ destroy ]
 
   def index
     respond_to do |format|
@@ -31,9 +32,22 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    event = @event.destroy
+    if event.destroyed?
+      head :ok
+    else
+      head :unprocessable_entity
+    end
+  end
+
   private
 
   def event_params
     params.require(:event).permit(:name, :description, :address, :contact_info)
+  end
+
+  def load_event
+    @event = Event.find(params[:id])
   end
 end
