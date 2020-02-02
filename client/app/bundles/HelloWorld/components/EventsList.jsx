@@ -3,7 +3,7 @@ import moment from "moment-timezone";
 
 export default class EventsList extends React.Component {
   render() {
-    const { events, onDeleteEvent } = this.props;
+    const { events, onDeleteEvent, openModal } = this.props;
     return (
       <div className="events-list">
         <table className="table">
@@ -13,7 +13,7 @@ export default class EventsList extends React.Component {
               <th scope="col">Address</th>
               <th scope="col">Start Date</th>
               <th scope="col">End Date</th>
-              <th scope="col">Action</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -22,17 +22,17 @@ export default class EventsList extends React.Component {
                 <td>{event.name}</td>
                 <td>{event.address}</td>
                 <td>
-                  {moment(event.starts_at)
-                    .tz("Africa/Lagos")
-                    .format("MMMM Do YYYY, h:mm:ss A")}
+                  {moment(event.starts_at).format("MMMM Do YYYY, h:mm:ss A")}
                 </td>
                 <td>
-                  {moment(event.ends_at)
-                    .tz("Africa/Lagos")
-                    .format("MMMM Do YYYY, h:mm:ss A")}
+                  {moment(event.ends_at).format("MMMM Do YYYY, h:mm:ss A")}
                 </td>
                 <td>
-                  <i className="fa fa-edit"></i> &nbsp;{" "}
+                  <i
+                    className="fa fa-edit"
+                    onClick={() => openModal(event)}
+                  ></i>{" "}
+                  &nbsp;{" "}
                   <i
                     className="fa fa-trash"
                     onClick={() => onDeleteEvent(event.id)}

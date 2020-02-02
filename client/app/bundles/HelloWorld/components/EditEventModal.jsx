@@ -1,22 +1,23 @@
 import React from "react";
 import Modal from "react-bootstrap4-modal";
 
-export default class CreateEventModal extends React.Component {
+export default class EditEventModal extends React.Component {
   render() {
     const {
       isVisible,
       closeModal,
       onChangeCreateEventInputs,
-      onCreateEvent
+      onUpdateEvent,
+      stateValues
     } = this.props;
 
     return (
       <Modal visible={isVisible} onClickBackdrop={closeModal}>
         <div className="modal-header">
-          <h5 className="modal-title">New Event</h5>
+          <h5 className="modal-title">Edit Event</h5>
         </div>
         <div className="modal-body">
-          <form onSubmit={event => onCreateEvent(event)}>
+          <form onSubmit={event => onUpdateEvent(event)}>
             <div className="form-group">
               <label htmlFor="name">
                 Name <span className="required-field">*</span>
@@ -24,19 +25,18 @@ export default class CreateEventModal extends React.Component {
               <input
                 type="text"
                 className="form-control form-control-sm"
-                id="name"
                 name="name"
+                value={stateValues.name}
                 onChange={event => onChangeCreateEventInputs(event)}
-                required
               />
             </div>
             <div className="form-group">
               <label htmlFor="description">Description</label>
               <textarea
                 className="form-control"
-                id="description"
                 rows="2"
                 name="description"
+                value={stateValues.description}
                 onChange={event => onChangeCreateEventInputs(event)}
               ></textarea>
             </div>
@@ -44,10 +44,10 @@ export default class CreateEventModal extends React.Component {
               <label htmlFor="contactInfo">Contact Information</label>
               <textarea
                 className="form-control"
-                id="contactInfo"
                 rows="2"
                 placeholder="Contact Bunmi: 08177777777 or Kola: 08188888888"
                 name="contactInfo"
+                value={stateValues.contactInfo}
                 onChange={event => onChangeCreateEventInputs(event)}
               ></textarea>
             </div>
@@ -58,9 +58,9 @@ export default class CreateEventModal extends React.Component {
               <input
                 type="text"
                 className="form-control form-control-sm"
-                id="address"
                 placeholder="1234 Main St, Lekki Lagos."
                 name="address"
+                value={stateValues.address}
                 onChange={event => onChangeCreateEventInputs(event)}
                 required
               />
@@ -73,8 +73,8 @@ export default class CreateEventModal extends React.Component {
                 <input
                   type="date"
                   className="form-control form-control-sm"
-                  id="startDate"
                   name="startDate"
+                  value={stateValues.startDate}
                   onChange={event => onChangeCreateEventInputs(event)}
                   required
                 />
@@ -86,8 +86,8 @@ export default class CreateEventModal extends React.Component {
                 <input
                   type="time"
                   className="form-control form-control-sm"
-                  id="startTime"
                   name="startTime"
+                  value={stateValues.startTime}
                   onChange={event => onChangeCreateEventInputs(event)}
                   required
                 />
@@ -101,8 +101,8 @@ export default class CreateEventModal extends React.Component {
                 <input
                   type="date"
                   className="form-control form-control-sm"
-                  id="endDate"
                   name="endDate"
+                  value={stateValues.endDate}
                   onChange={event => onChangeCreateEventInputs(event)}
                   required
                 />
@@ -114,8 +114,8 @@ export default class CreateEventModal extends React.Component {
                 <input
                   type="time"
                   className="form-control form-control-sm"
-                  id="endTime"
                   name="endTime"
+                  value={stateValues.endTime}
                   onChange={event => onChangeCreateEventInputs(event)}
                   required
                 />
