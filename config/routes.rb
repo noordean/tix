@@ -6,5 +6,9 @@ Rails.application.routes.draw do
   get 'login/create', to: 'logins#create', as: :create_login
   get 'logout', to: 'logins#destroy'
 
-  resources :events
+  resources :events, except: %i[ new edit ] do
+    member do
+      put "update_status"
+    end
+  end
 end

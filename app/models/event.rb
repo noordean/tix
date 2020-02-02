@@ -6,6 +6,11 @@ class Event < ApplicationRecord
   validate :ends_at_in_the_past
   validate :ends_at_greater_than_starts_at
 
+  enum status: {
+    active:  1,
+    in_active: 2
+  }
+
   def starts_at_in_the_past
     errors.add(:starts_at, "must not be a date in the past") if starts_at.past?
   end

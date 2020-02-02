@@ -30,6 +30,7 @@
     "react-bootstrap4-modal": "^1.7.4",
     "react-dom": "^15.5.4",
     "react-on-rails": "6.10.1",
+    "react-switch": "^5.0.1",
     "webpack": "^2.3.3"
   },
   "devDependencies": {}

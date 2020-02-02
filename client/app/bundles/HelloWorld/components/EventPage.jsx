@@ -163,6 +163,34 @@ export default class EventPage extends React.Component {
     this.closeEditModal();
   };
 
+  handleStatusChange = async event => {
+    const newStatus = event.status === "active" ? "inactive" : "active";
+    const response = await fetch(`/events/${event.id}/update_status`, {
+      credentials: "same-origin",
+      method: "PUT",
+      headers: ReactOnRails.authenticityHeaders({
+        "Content-Type": "application/json"
+      })
+    });
+
+    if (!response.ok) {
+      toastr.error("An error occured. Please try again");
+      return;
+    }
+
+    this.updateEventOnStatusChange(event.id, newStatus);
+    toastr.success(`Event is now ${newStatus}`);
+  };
+
+  updateEventOnStatusChange = (eventId, newStatus) => {
+    const events = this.state.events;
+    const eventIndex = events.findIndex(e => e.id === eventId);
+    events[eventIndex].status = newStatus;
+    this.setState({
+      events
+    });
+  };
+
   eventFormInputs = () => {
     const {
       name,
@@ -212,6 +240,7 @@ export default class EventPage extends React.Component {
               events={this.state.events}
               onDeleteEvent={this.onDeleteEvent}
               openModal={this.openEditModal}
+              handleStatusChange={this.handleStatusChange}
             />
           ) : (
             <h6 className="no-event-text">You currently have no event</h6>

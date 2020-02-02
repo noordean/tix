@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_02_01_102907) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 1
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

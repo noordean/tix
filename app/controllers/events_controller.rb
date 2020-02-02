@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :redirect_unauthorized_user!
-  before_action :load_event, only: %i[ destroy update ]
+  before_action :load_event, only: %i[ destroy update update_status ]
   before_action :extract_date_info, only: %i[ create update ]
 
   def index
@@ -10,7 +10,7 @@ class EventsController < ApplicationController
       end
 
       format.json do
-        events = current_user.events
+        events = current_user.events.order(:starts_at)
         render json: events
       end
     end
@@ -45,6 +45,15 @@ class EventsController < ApplicationController
     else
       head :unprocessable_entity
     end
+  end
+
+  def update_status
+    if @event.active?
+      @event.in_active!
+    else
+      @event.active!
+    end
+    head :ok
   end
 
   private

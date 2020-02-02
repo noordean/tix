@@ -1,9 +1,10 @@
 import React from "react";
 import moment from "moment-timezone";
+import Switch from "react-switch";
 
 export default class EventsList extends React.Component {
   render() {
-    const { events, onDeleteEvent, openModal } = this.props;
+    const { events, onDeleteEvent, openModal, handleStatusChange } = this.props;
     return (
       <div className="events-list">
         <table className="table">
@@ -14,6 +15,7 @@ export default class EventsList extends React.Component {
               <th scope="col">Start Date</th>
               <th scope="col">End Date</th>
               <th scope="col">Actions</th>
+              <th scope="col">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -37,6 +39,12 @@ export default class EventsList extends React.Component {
                     className="fa fa-trash"
                     onClick={() => onDeleteEvent(event.id)}
                   ></i>
+                </td>
+                <td>
+                  <Switch
+                    onChange={() => handleStatusChange(event)}
+                    checked={event.status === "active"}
+                  />
                 </td>
               </tr>
             ))}
