@@ -63,10 +63,18 @@ export default class EventPage extends React.Component {
       address,
       contactInfo: contact_info,
       eventType: event_type,
-      startDate: moment(starts_at).format(dateFormat),
-      startTime: moment(starts_at).format(timeFormat),
-      endDate: moment(ends_at).format(dateFormat),
-      endTime: moment(ends_at).format(timeFormat),
+      startDate: moment(starts_at)
+        .tz("Africa/Lagos")
+        .format(dateFormat),
+      startTime: moment(starts_at)
+        .tz("Africa/Lagos")
+        .format(timeFormat),
+      endDate: moment(ends_at)
+        .tz("Africa/Lagos")
+        .format(dateFormat),
+      endTime: moment(ends_at)
+        .tz("Africa/Lagos")
+        .format(timeFormat),
       isEditModalVisible: true
     });
   };

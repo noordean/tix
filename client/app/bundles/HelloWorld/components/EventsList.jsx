@@ -24,10 +24,14 @@ export default class EventsList extends React.Component {
                 <td>{event.name}</td>
                 <td>{event.address}</td>
                 <td>
-                  {moment(event.starts_at).format("MMMM Do YYYY, h:mm:ss A")}
+                  {moment(event.starts_at)
+                    .tz("Africa/Lagos")
+                    .format("MMMM Do YYYY, h:mm:ss A")}
                 </td>
                 <td>
-                  {moment(event.ends_at).format("MMMM Do YYYY, h:mm:ss A")}
+                  {moment(event.ends_at)
+                    .tz("Africa/Lagos")
+                    .format("MMMM Do YYYY, h:mm:ss A")}
                 </td>
                 <td>
                   <i
