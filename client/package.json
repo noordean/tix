@@ -24,7 +24,7 @@
     "es5-shim": "^4.5.9",
     "expose-loader": "^0.7.3",
     "imports-loader": "^0.7.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.27",
     "react": "^15.5.4",
     "react-bootstrap4-modal": "^1.7.4",
